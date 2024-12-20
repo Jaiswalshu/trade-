@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Upload and Summary</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload CSV File</h1>
+        
+        <!-- File upload form -->
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if symbol_summary %}
+            <h2>Trade Summary</h2>
+            <div class="table-container">
+                <!-- Render the symbol_summary HTML table -->
+                {{ symbol_summary|safe }}
+                <h3>Total Profit Across All Trade: ${{ total_profit_usd }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
